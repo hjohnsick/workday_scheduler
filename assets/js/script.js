@@ -5,34 +5,43 @@ var containerDiv = document.querySelector(".container");
 currentDayEl.textContent = moment().format("dddd, MMMM Do YYYY");
 
 // Store the current time
-var time = moment().format("hA");
-console.log(time);
+var currentTime = moment().format("hA");
+console.log(currentTime);
 var times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 
 // create table to display times, enter text, and save item
 var createTable = function() {
-    var table = document.createElement("TABLE");
-    containerDiv.appendChild(table);
+    var timeBlockDiv = document.createElement("div");
+    timeBlockDiv.setAttribute("class", "time-block");
+    containerDiv.appendChild(timeBlockDiv);
     // Display each time period
     for (var i = 0; i < times.length; i++) {
         // create row to display time, text, and save button
-        var row = document.createElement("TR");
-        row.setAttribute("class", "row");
-        row.setAttribute("class", "time-block");
-        table.appendChild(row);
-        var timeTD = document.createElement("TD");
-        timeTD.setAttribute("class", "hour");
-        row.appendChild(timeTD);
-        timeTD.textContent = times[i];
-        var textInputTD = document.createElement("textarea");
-        textInputTD.setAttribute("type", "text");
-        textInputTD.setAttribute("class", "description");
-        row.appendChild(textInputTD);
-        var saveTD = document.createElement("button");
-        saveTD.setAttribute("class", "saveBtn");
-        saveTD.innerHTML = '<i class="fas fa-save"></i>';
-        saveTD.setAttribute("type", "submit");
-        row.appendChild(saveTD);        
+        var rowDiv = document.createElement("div");
+        timeBlockDiv.appendChild(rowDiv);
+        rowDiv.setAttribute("class", "row");
+        var timeP = document.createElement("p");
+        rowDiv.appendChild(timeP);
+        timeP.setAttribute("class", "hour");
+        timeP.textContent = times[i];
+        var textInput = document.createElement("textarea");
+        rowDiv.appendChild(textInput);
+        textInput.setAttribute("class", "description");
+        var saveButton = document.createElement("button");
+        rowDiv.appendChild(saveButton);
+        saveButton.setAttribute("class", "saveBtn");
+        saveButton.innerHTML = '<i class="fas fa-save"></i>'; 
+        
+        if (currentTime === timeP.outerText) {
+            textInput.setAttribute("class", "present");
+        } 
+        else if (currentTime < timeP.outerText) {
+            textInput.setAttribute("class", "past");
+        } else if (currentTime > timeP.outerText) {
+            textInput.setAttribute("class", "future");
+        }
+
+        console.log(timeP.outerText);
     }
 }
 
