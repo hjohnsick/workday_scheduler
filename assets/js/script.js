@@ -13,21 +13,26 @@ var times = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 var createTable = function() {
     var table = document.createElement("TABLE");
     containerDiv.appendChild(table);
-
     // Display each time period
     for (var i = 0; i < times.length; i++) {
         // create row to display time, text, and save button
         var row = document.createElement("TR");
+        row.setAttribute("class", "row");
+        row.setAttribute("class", "time-block");
         table.appendChild(row);
         var timeTD = document.createElement("TD");
+        timeTD.setAttribute("class", "hour");
         row.appendChild(timeTD);
         timeTD.textContent = times[i];
-        var textInputTD = document.createElement("INPUT");
+        var textInputTD = document.createElement("textarea");
         textInputTD.setAttribute("type", "text");
+        textInputTD.setAttribute("class", "description");
         row.appendChild(textInputTD);
-        var saveTD = document.createElement("INPUT");
+        var saveTD = document.createElement("button");
+        saveTD.setAttribute("class", "saveBtn");
+        saveTD.innerHTML = '<i class="fas fa-save"></i>';
         saveTD.setAttribute("type", "submit");
-        row.appendChild(saveTD);
+        row.appendChild(saveTD);        
     }
 }
 
