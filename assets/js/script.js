@@ -18,11 +18,13 @@ var createTimeBlocks = function() {
     $(containerDiv).append(divRow);
     // add column to display time period
     var timeDiv = $('<div>').addClass("col");
-    $(divRow).append(timeDiv);
     var timeP = $('<p class="hour">').text(times[i]);
     $(timeDiv).append(timeP);
-    // // add column to display text area
-    // var textInputTD = $("<td><textarea></textarea></td>").addClass("description");
+    // add column to display text area
+    var textInputDiv = $('<div>').addClass("col");
+    var textArea = $('<textarea>');
+    $(textInputDiv).append(textArea);
+    $(divRow).append(timeDiv, textInputDiv);
     // // add column to display button
     // var buttonTD = $('<button class="saveBtn"><i class="fas fa-save"></i></button>');
     // $(row).append(timeTD, textInputTD, buttonTD);
