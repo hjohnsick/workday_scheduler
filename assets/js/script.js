@@ -24,10 +24,12 @@ var createTimeBlocks = function() {
     var textInputDiv = $('<div>').addClass("col");
     var textArea = $('<textarea>');
     $(textInputDiv).append(textArea);
-    $(divRow).append(timeDiv, textInputDiv);
-    // // add column to display button
-    // var buttonTD = $('<button class="saveBtn"><i class="fas fa-save"></i></button>');
+    // add column to display button
+    var buttonDiv = $('<div>').addClass("col");
+    var button = $('<button class="saveBtn"><i class="fas fa-save"></i></button>');
+    $(buttonDiv).append(button);
     // $(row).append(timeTD, textInputTD, buttonTD);
+    $(divRow).append(timeDiv, textInputDiv, buttonDiv);
  }
 }
 
