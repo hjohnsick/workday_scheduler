@@ -43,15 +43,15 @@ var createTimeBlocks = function () {
     var divRow = $("<div>").addClass("row align-items-start");
     $(containerDiv).append(divRow);
     // add column to display time period
-    var timeDiv = $("<div>").addClass("col");
+    var timeDiv = $("<div>").addClass("col-md-2 no-padding");
     var timeP = $('<p class="hour">').text(times[i]);
     $(timeDiv).append(timeP);
     // add column to display text area
-    var textInputDiv = $("<div>").addClass("col");
+    var textInputDiv = $("<div>").addClass("col no-padding");
     var textArea = $(`<textarea id="task-${i}">`);
     $(textInputDiv).append(textArea);
     // add column to display button
-    var buttonDiv = $("<div>").addClass("col");
+    var buttonDiv = $("<div>").addClass("col-md-2 no-padding");
     var button = $(
       '<button class="saveBtn"><i class="fas fa-save"></i></button>'
     );

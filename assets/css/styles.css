@@ -11,6 +11,7 @@ body {
     color: #000000;
     border-left: 1px solid black;
     padding: 10px;
+    width: 100%;
     height: 80px;
   }
   
@@ -41,7 +42,6 @@ body {
     background-color: #ffffff;
     color: #000000;
     border-top: 1px dashed #000000;
-    height: 80px;
   }
   
   .past {
@@ -66,10 +66,16 @@ body {
     background-color: #06AED5;
     color: white;
     height: 80px;
+    width: 50%;
   }
   
   .saveBtn i:hover {
     font-size: 20px;
     transition: all .3s ease-in-out;
+  }
+
+  .no-padding {
+    padding-left: 0;
+    padding-right: 0;
   }
 
