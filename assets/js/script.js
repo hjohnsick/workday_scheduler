@@ -22,7 +22,7 @@ var createTimeBlocks = function() {
     $(timeDiv).append(timeP);
     // add column to display text area
     var textInputDiv = $('<div>').addClass("col");
-    var textArea = $('<textarea>');
+    var textArea = $(`<textarea id="task-${i}">`);
     $(textInputDiv).append(textArea);
     // add column to display button
     var buttonDiv = $('<div>').addClass("col");
@@ -39,8 +39,16 @@ var loadTasks = function() {
 }
 
 var saveTasks = function() {
-    localStorage.setItem("tasks", );
+    debugger;
+    for (var i = 0; i < times.length; i++) {
+        var task = document.getElementById(`task-${i}`).value;
+        localStorage.setItem("task", task);
+        console.log(`Task ${task} saved`);
+    }
+
 }
+
+$(".saveBtn").on("click", saveTasks);
 
 var checkTime = function(i, textArea) {
     // remove any old classes from element
