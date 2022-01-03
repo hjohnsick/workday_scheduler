@@ -32,8 +32,6 @@ var militaryTimes = [
   "19",
   "20",
 ];
-// Store the current time
-var currentTime = moment().format("H");
 
 // Create time blocks
 var createTimeBlocks = function () {
@@ -82,7 +80,7 @@ var checkTime = function (i, textArea) {
   var time = moment().set("hour", militaryTimes[i]);
   // apply new class if task is future, present, or past
 
-  if (currentTime === militaryTimes[i]) {
+  if (moment().isSame(time)) {
     $(textArea).addClass("present");
   } else if (moment().isAfter(time)) {
     $(textArea).addClass("past");
@@ -90,8 +88,6 @@ var checkTime = function (i, textArea) {
     $(textArea).addClass("future");
   }
 
-  console.log(`This is the current time:${currentTime}`);
-  console.log(militaryTimes[i]);
 };
 
 loadTasks();
