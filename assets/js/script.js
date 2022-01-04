@@ -64,16 +64,6 @@ var loadTasks = function () {
   createTimeBlocks();
 };
 
-var saveTasks = function () {
-  for (var i = 0; i < times.length; i++) {
-    var task = document.getElementById(`task-${i}`).value;
-    localStorage.setItem("task", task);
-    console.log(`Task ${task} saved`);
-  }
-};
-
-$(".saveBtn").on("click", saveTasks);
-
 var checkTime = function (i, textArea) {
   // remove any old classes from element
   $(textArea).removeClass("past present future");
@@ -90,7 +80,17 @@ var checkTime = function (i, textArea) {
 
 };
 
+var saveTasks = function () {
+    for (var i = 0; i < times.length; i++) {
+      var task = document.getElementById(`task-${i}`).value;
+      localStorage.setItem("task", task);
+      console.log(`Task ${task} saved`);
+    }
+  };
+  
 loadTasks();
+
+$(".saveBtn").on("click", saveTasks);
 
 setInterval(function () {
   $("textarea").each(function (index, el) {
