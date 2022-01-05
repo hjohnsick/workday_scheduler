@@ -63,8 +63,11 @@ var createTimeBlocks = function () {
 };
 
 var loadTasks = function () {
+  debugger;
+  $("*[data-index]").each(function () {
+    $(this).val(localStorage.getItem("task"));
+  });
   createTimeBlocks();
-  localStorage.getItem("task");
 };
 
 var checkTime = function (i, textArea) {
@@ -80,23 +83,20 @@ var checkTime = function (i, textArea) {
   } else if (moment().isBefore(time)) {
     $(textArea).addClass("future");
   }
-
 };
 
 var saveTasks = function (event) {
-    // for (var i = 0; i < times.length; i++) {
-      var index = ($(event.target).attr('data-index'));
-      // var text = document.querySelector("textarea");
-      // console.log(text);
-      // var index = text.dataset.index;
-      // console.log(index);
-      var task = document.getElementById(`task-${index}`).value;
-      tasks.push(task);
-      localStorage.setItem("task", JSON.stringify(tasks));
-      console.log(`Task ${task} saved`);
-    // }
-  };
-  
+  // get the index of the button that was clicked
+  var index = $(event.target).attr("data-index");
+  // use the index to save the task
+  var task = document.getElementById(`task-${index}`).value;
+  // add the task to the array of tasks
+  tasks.push(task);
+  // store the task in local storage
+  localStorage.setItem("task", JSON.stringify(tasks));
+  console.log(`Task ${task} saved`);
+};
+
 loadTasks();
 
 $(".saveBtn").on("click", saveTasks);
