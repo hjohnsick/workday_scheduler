@@ -1,3 +1,5 @@
+var tasks = [];
+
 // Display Current Day at the top of the page
 var currentDayEl = document.querySelector("#currentDay");
 currentDayEl.textContent = moment().format("dddd, MMMM Do YYYY");
@@ -51,7 +53,7 @@ var createTimeBlocks = function () {
     // add column to display button
     var buttonDiv = $("<div>").addClass("col-md-2 no-padding");
     var button = $(
-      '<button class="saveBtn"><i class="fas fa-save"></i></button>'
+      `<button class="saveBtn" data-index="${i}"><i class="fas fa-save"></i></button>`
     );
     $(buttonDiv).append(button);
     $(divRow).append(timeDiv, textInputDiv, buttonDiv);
@@ -62,6 +64,7 @@ var createTimeBlocks = function () {
 
 var loadTasks = function () {
   createTimeBlocks();
+  localStorage.getItem("task");
 };
 
 var checkTime = function (i, textArea) {
@@ -80,12 +83,18 @@ var checkTime = function (i, textArea) {
 
 };
 
-var saveTasks = function () {
-    for (var i = 0; i < times.length; i++) {
-      var task = document.getElementById(`task-${i}`).value;
-      localStorage.setItem("task", task);
+var saveTasks = function (event) {
+    // for (var i = 0; i < times.length; i++) {
+      var index = ($(event.target).attr('data-index'));
+      // var text = document.querySelector("textarea");
+      // console.log(text);
+      // var index = text.dataset.index;
+      // console.log(index);
+      var task = document.getElementById(`task-${index}`).value;
+      tasks.push(task);
+      localStorage.setItem("task", JSON.stringify(tasks));
       console.log(`Task ${task} saved`);
-    }
+    // }
   };
   
 loadTasks();
