@@ -1,4 +1,4 @@
-var tasks = [];
+// var tasks = [];
 
 // Display Current Day at the top of the page
 var currentDayEl = document.querySelector("#currentDay");
@@ -63,9 +63,8 @@ var createTimeBlocks = function () {
 };
 
 var loadTasks = function () {
-  debugger;
   $("*[data-index]").each(function () {
-    $(this).val(localStorage.getItem("task"));
+    $(this).val(localStorage.getItem("tasks"));
   });
   createTimeBlocks();
 };
@@ -91,9 +90,9 @@ var saveTasks = function (event) {
   // use the index to save the task
   var task = document.getElementById(`task-${index}`).value;
   // add the task to the array of tasks
-  tasks.push(task);
+//   tasks.push(task);
   // store the task in local storage
-  localStorage.setItem("task", JSON.stringify(tasks));
+  localStorage.setItem(`task-${index}`, task);
   console.log(`Task ${task} saved`);
 };
 
