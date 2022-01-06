@@ -43,7 +43,6 @@ var getItems = function (index) {
 
     var task = document.getElementById(`task-${index}`);
     task.textContent = item;
-    console.log(`This is your item: ${item}`);
 }
 
 // Create time blocks
@@ -101,17 +100,15 @@ var saveTasks = function (event) {
   var task = document.getElementById(`task-${index}`).value;
   // store the task in local storage
   localStorage.setItem(`task-${index}`, task);
-  console.log(`Task ${task} saved`);
 };
 
 loadTasks();
 
 $(".saveBtn").on("click", saveTasks);
 
+// calling the checkTime function every half hour so the present, past, and future attributes can get updated accordingly
 setInterval(function () {
   $("textarea").each(function (index, el) {
     checkTime(index, el);
-    console.log(index);
-    console.log(el);
   });
-}, 3600000);
+}, 1800000);
