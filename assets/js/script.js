@@ -1,5 +1,3 @@
-// var tasks = [];
-
 // Display Current Day at the top of the page
 var currentDayEl = document.querySelector("#currentDay");
 currentDayEl.textContent = moment().format("dddd, MMMM Do YYYY");
@@ -35,6 +33,19 @@ var militaryTimes = [
   "20",
 ];
 
+// Get items from local storage
+var getItems = function (index) {
+    var item = localStorage.getItem(`task-${index}`);
+
+    if (!item) {
+        return;
+    }
+
+    var task = document.getElementById(`task-${index}`);
+    task.textContent = item;
+    console.log(`This is your item: ${item}`);
+}
+
 // Create time blocks
 var createTimeBlocks = function () {
   // Display each time period
@@ -58,14 +69,13 @@ var createTimeBlocks = function () {
     $(buttonDiv).append(button);
     $(divRow).append(timeDiv, textInputDiv, buttonDiv);
 
+    getItems(i);
+
     checkTime(i, textArea);
   }
 };
 
 var loadTasks = function () {
-  $("*[data-index]").each(function () {
-    $(this).val(localStorage.getItem("tasks"));
-  });
   createTimeBlocks();
 };
 
@@ -89,8 +99,6 @@ var saveTasks = function (event) {
   var index = $(event.target).attr("data-index");
   // use the index to save the task
   var task = document.getElementById(`task-${index}`).value;
-  // add the task to the array of tasks
-//   tasks.push(task);
   // store the task in local storage
   localStorage.setItem(`task-${index}`, task);
   console.log(`Task ${task} saved`);
